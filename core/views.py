@@ -4,6 +4,8 @@ from __future__ import unicode_literals
 from django.contrib import messages
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
+
+from core.forms import SearchForm
 from core.models import Setting, ContactForm, ContactMessage
 from product.models import Category, Product
 
@@ -29,8 +31,11 @@ def index(request):
 
 
 def aboutus(request):
+    category = Category.objects.all()
     setting = Setting.objects.get(pk=1)
-    context = {'setting':setting}
+    context = {'setting': setting,
+               'category': category,
+               }
     return render(request, 'about.html', context)
 
 
@@ -49,9 +54,14 @@ def contactus(request):
             messages.success(request, "Your message has been sent! Thank you for your message.")
             return HttpResponseRedirect('/contact')
 
+    category = Category.objects.all()
     setting = Setting.objects.get(pk=1)
     form = ContactForm
-    context = {'setting': setting, 'form': form}
+    context = {
+        'setting': setting,
+        'form': form,
+        'category': category,
+    }
     return render(request, 'contact.html', context)
 
 
@@ -63,3 +73,22 @@ def category_products(request, id, slug):
         'category': category,
     }
     return render(request, 'category_products.html', context)
+
+
+def search(request):
+    if request.method == 'POST': # check post
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            query = form.cleaned_data['query'] # get form input data
+            catid = form.cleaned_data['catid']
+            if catid==0:
+                products=Product.objects.filter(title__icontains=query)  #SELECT * FROM product WHERE title LIKE '%query%'
+            else:
+                products = Product.objects.filter(title__icontains=query,category_id=catid)
+
+            category = Category.objects.all()
+            context = {'products': products, 'query': query,
+                       'category': category }
+            return render(request, 'search_products.html', context)
+
+    return HttpResponseRedirect('/')
