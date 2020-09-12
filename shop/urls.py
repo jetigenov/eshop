@@ -5,6 +5,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from core import views
+from order import views as OrderViews
+
 
 urlpatterns = [
 
@@ -24,6 +26,8 @@ urlpatterns = [
 
     path('category/<int:id>/<slug:slug>', views.category_products, name='category_products'),
     path('product/<int:id>/<slug:slug>', views.product_detail, name='product_detail'),
+
+    path('shopcart/', OrderViews.shopcart, name='shopcart'),
 
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

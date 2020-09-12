@@ -1,0 +1,150 @@
+{% extends 'home.html' %}
+
+{% block title %} Shop Cart {% endblock %}
+{% block description %} {{ setting.description }} {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+
+{% block sidebar %} {% include 'sidebar.html' %} {% endblock %}
+
+{% block body %}
+
+    <!-- BREADCRUMB -->
+    <div id="breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="/">Home</a></li>
+                <li class="active">Shop Cart</li>
+            </ul>
+        </div>
+    </div>
+    <!-- /BREADCRUMB -->
+    <!-- section -->
+    <div class="section">
+    <!-- container -->
+    <div class="container">
+    <!-- row -->
+{#    <div class="row">#}
+{#        <div class="col-md-12">#}
+{#            <table class="order-summary clearfix">#}
+{#                <div class="section-title">#}
+{#                    <h3 class="title">Shopcart Product List</h3>#}
+{#                </div>#}
+{#                <div class="shopping-cart-table table">#}
+{#                    <thead>#}
+{#                    <tr>#}
+{#                        <th>Product</th>#}
+{#                        <th></th>#}
+{#                        <th class="text-center">Price</th>#}
+{#                        <th class="text-center">Quantity</th>#}
+{#                        <th class="text-center">Total</th>#}
+{#                        <th class="text-right"></th>#}
+{#                    </tr>#}
+{#                    </thead>#}
+{#                    <tbody>#}
+{##}
+{#                    {% for i in shopcart %}#}
+{#                        <tr>#}
+{#                            <td class="thumb"><img src="{{ i.product.image.url }}" alt="" style="height: 50px"></td>#}
+{#                            <td class="details">#}
+{#                                <a href="#">{{ i.product }}</a>#}
+{#                                <ul>#}
+{#                                    <li><span>Size: XL</span></li>#}
+{#                                    <li><span>Color: Camelot</span></li>#}
+{#                                </ul>#}
+{#                            </td>#}
+{#                            <td class="price text-center"><strong>${{ i.product.price }}</strong><br>#}
+{#                                <del class="font-weak"><small>$40.00</small></del>#}
+{#                            </td>#}
+{#                            <td class="qty text-center"><strong>{{ i.quantity }}</strong></td>#}
+{#                            <td class="total text-center"><strong class="primary-color">${{ i.amount }}</strong></td>#}
+{#                            <td class="text-right"><a href="/order/deletefromcart/{{ rs.id }}"#}
+{#                                                      onclick="return confirm('Delete ! Are you sure?')"#}
+{#                                                      class="main-btn icon-btn"><i class="fa fa-close"></i></a></td>#}
+{#                        </tr>#}
+{#                    {% endfor %}#}
+{##}
+{#                    </tbody>#}
+{#                    <tfoot>#}
+{#                    <tr>#}
+{#                        <th class="empty" colspan="3"></th>#}
+{#                        <th>SUBTOTAL</th>#}
+{#                        <th colspan="2" class="sub-total">${{ total }}</th>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <th class="empty" colspan="3"></th>#}
+{#                        <th>SHIPPING</th>#}
+{#                        <td colspan="2">Free Shipping</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <th class="empty" colspan="3"></th>#}
+{#                        <th>TOTAL</th>#}
+{#                        <th colspan="2" class="total">${{ total }}</th>#}
+{#                    </tr>#}
+{#                    </tfoot>#}
+{#            </table>#}
+{#            <div class="pull-right">#}
+{#                <button class="primary-btn">Place Order</button>#}
+{#            </div>#}
+{#            <!-- /row -->#}
+{#        </div>#}
+{#        <!-- /container -->#}
+{#    </div>#}
+    <div class="row">
+
+                            <div class="col-md-12">
+                                <div class="order-summary clearfix">
+                                    <div class="section-title">
+                                        <h3 class="title">Shopcart Product List</h3>
+                                    </div>
+                                    <table class="shopping-cart-table table">
+                                        <thead>
+                                        <tr>
+                                            <th>Product</th>
+                                            <th></th>
+                                            <th class="text-center">Price</th>
+                                            <th class="text-center">Quantity</th>
+                                            <th class="text-right"></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for i in shopcart %}
+                                            <tr>
+                                                <td class="thumb"><img src="{{ i.product.image.url }}" alt="" style="height: 50px"></td>
+                                                <td class="details"><a href="/product/>{{ i.product.id }}/{{ i.product.slug }}">{{ i.product }}</a></td>
+                                                <td class="price text-center"><strong>${{ i.product.price }}</strong><br></td>
+                                                <td class="qty text-center"><strong>{{ i.quantity }}</strong></td>
+                                                <td class="total text-center"><strong class="primary-color">${{ i.amount }}</strong></td>
+                                                <td class="text-right"><a href="/order/deletefromcart/{{ i.id }}" onclick="return confirm('You want to delete it?')" class="main-btn icon-btn"><i class="fa fa-close"></i></a></td>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <th class="empty" colspan="3"></th>
+                                        <th>SHIPPING</th>
+                                        <td colspan="2">Free Shipping</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="empty" colspan="3"></th>
+                                        <th>TOTAL</th>
+                                        <th colspan="2" class="total">${{ total }}</th>
+                                    </tr>
+                                    </tfoot>
+                                    </table>
+                                    <div class="pull-right">
+                                        <button class="primary-btn">Place Order</button>
+                                    </div>
+                                    </table>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+    <!-- /section -->
+
+{% endblock %}
+
+

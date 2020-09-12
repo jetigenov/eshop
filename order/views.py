@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 
 from order.models import ShopCart, ShopCartForm
-from product.models import Product
+from product.models import Product, Category
 
 
 def order(request):
@@ -53,4 +53,23 @@ def addtoshopcart(request, id):
         return HttpResponseRedirect(url)
 
 
+def shopcart(request):
+    category = Category.objects.all()
+    current_user = request.user  # Access User Session information
+    shopcart = ShopCart.objects.filter(user_id=current_user.id)
+    total = 0
+    for i in shopcart:
+        total += i.product.price * i.quantity
+    context = {
+        'category': category,
+        'shopcart': shopcart,
+        'total': total,
+    }
+    return render(request, 'shopcart_products.html', context)
 
+
+@login_required(login_url='/login') # Check login
+def deletefromcart(request, id):
+    ShopCart.objects.filter(id=id).delete()
+    messages.success(request, "Your item deleted from Shopcart.")
+    return HttpResponseRedirect("/shopcart/")
