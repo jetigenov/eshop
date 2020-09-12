@@ -100,11 +100,10 @@ def search_auto(request):
     if request.is_ajax():
         q = request.GET.get('term', '')
         products = Product.objects.filter(title__icontains=q)
-
         results = []
         for i in products:
             product_json = {}
-            product_json = i.title + " > " + i.category.title
+            product_json = i.title
             results.append(product_json)
         data = json.dumps(results)
     else:

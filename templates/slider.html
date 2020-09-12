@@ -1,30 +1,64 @@
-    {% load static %}
+{% load static %}
 <!-- HOME -->
-	<div id="home">
-		<!-- container -->
-		<div class="container">
-			<!-- home wrap -->
-			<div class="home-wrap">
-				<!-- home slick -->
-				<div id="home-slick">
-                    {% for i in products_slider %}
-					<!-- banner -->
-					<div class="banner banner-1">
-						<img src="{{ i.image.url }}" alt="" style="height: 350px">
-						<div class="banner-caption text-center">
-							<h1>{{ i.title}}</h1>
-							<h3 class="white-color font-weak">{{ i.price}}</h3>
-							<a href="/product/{{ i.id }}/{{ i.slug }}" class="primary-btn">Shop Now</a>
-						</div>
-					</div>
-					<!-- /banner -->
-                    {% endfor %}
-					<!-- /banner -->
-				</div>
-				<!-- /home slick -->
-			</div>
-			<!-- /home wrap -->
-		</div>
-		<!-- /container -->
-	</div>
-	<!-- /HOME -->
+<div id="home">
+    <!-- container -->
+    <div class="container">
+        <!-- home wrap -->
+        {#			<div class="home-wrap">#}
+        {#				<!-- home slick -->#}
+        {#				<div id="home-slick">#}
+        {#                    {% for i in products_slider %}#}
+        {#					<!-- banner -->#}
+        {#					<div class="banner banner-1">#}
+        {#						<img src="{{ i.image.url }}" alt="" style="height: 350px">#}
+        {#						<div class="banner-caption text-center">#}
+        {#							<h1>{{ i.title}}</h1>#}
+        {#							<h3 class="white-color font-weak">{{ i.price}}</h3>#}
+        {#							<a href="/product/{{ i.id }}/{{ i.slug }}" class="primary-btn">Shop Now</a>#}
+        {#						</div>#}
+        {#					</div>#}
+        {#					<!-- /banner -->#}
+        {#                    {% endfor %}#}
+        {#					<!-- /banner -->#}
+        {#				</div>#}
+        {#				<!-- /home slick -->#}
+        {#			</div>#}
+        <!-- /home wrap -->
+        <div class="home-wrap">
+            <!-- home slick -->
+            <div id="home-slick">
+                <!-- banner -->
+                <div class="banner banner-1">
+                    <img src="{% static '' %}./img/iphone12.jpg" alt="">
+                    <div class="banner-caption text-center">
+                        <h1 class="white-color">SOON <span>Iphone 12</span></h1>
+                    </div>
+                </div>
+                <!-- /banner -->
+
+                <!-- banner -->
+                <div class="banner banner-1">
+                    <img src="{% static '' %}./img/asusrog.jpeg" alt="" style="height: 490px">
+                    <div class="banner-caption">
+                        <h1 class="primary-color">HOT DEAL<br><span class="white-color font-weak">Up to 50% OFF</span>
+                        </h1>
+                    </div>
+                </div>
+                <!-- /banner -->
+
+                <!-- banner -->
+                <div class="banner banner-1">
+                    <img src="{% static '' %}./img/banner03.jpg" alt="">
+                    <div class="banner-caption">
+                        <h1 class="white-color">New Product <span>Collection</span></h1>
+                    </div>
+                </div>
+                <!-- /banner -->
+            </div>
+            <!-- /home slick -->
+        </div>
+
+    </div>
+    <!-- /container -->
+</div>
+<!-- /HOME -->
