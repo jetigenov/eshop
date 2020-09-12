@@ -69,10 +69,12 @@ def contactus(request):
 
 def category_products(request, id, slug):
     category = Category.objects.all()
+    categories = Category.objects.get(pk=id)
     products = Product.objects.filter(category_id=id)
     context = {
         'products': products,
         'category': category,
+        'categories': categories,
     }
     return render(request, 'category_products.html', context)
 

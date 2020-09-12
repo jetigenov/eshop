@@ -1,7 +1,7 @@
 {% extends 'home.html' %}
-{% block title %}Products - {{ setting.title }}{% endblock %}
-{% block description %}{{ setting.title }}{% endblock %}
-{% block keywords %}{{ setting.title }}{% endblock %}
+{% block title %}{{ categories.title}}{% endblock %}
+{% block description %}{{ categories.title }}{% endblock %}
+{% block keywords %}{{ categories.title }}{% endblock %}
 
 {% block sidebar %} {% include 'sidebar.html' %} {% endblock %}
 {% block body %}
@@ -11,7 +11,7 @@
         <div class="container">
             <ul class="breadcrumb">
                 <li><a href="/">Home</a></li>
-                <li class="active">About Us</li>
+                <li class="active">{{ categories.title }}</li>
             </ul>
         </div>
     </div>
