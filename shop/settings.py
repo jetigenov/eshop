@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'mptt',
+    'order',
 
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

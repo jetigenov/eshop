@@ -99,10 +99,20 @@ class Comment(models.Model):
         ('True', 'True'),
         ('False', 'False')
     )
+
+    VARIANTS = (
+        ('None', 'None'),
+        ('Size', 'Size'),
+        ('Color', 'Color'),
+        ('Size-Color', 'Size-Color'),
+
+    )
+
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     subject = models.CharField(max_length=50, blank=True)
     comment = models.CharField(max_length=255, blank=True)
+    variant=models.CharField(max_length=10,choices=VARIANTS, default='None')
     rate = models.IntegerField(default=1)
     ip = models.CharField(max_length=20, blank=True)
     status = models.CharField(max_length=10, choices=STATUS, default='New')
@@ -120,3 +130,37 @@ class CommentForm(ModelForm):
 
 
 
+class Variants(models.Model):
+    title = models.CharField(max_length=100, blank=True,null=True)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    # color = models.ForeignKey(Color, on_delete=models.CASCADE,blank=True,null=True)
+    # size = models.ForeignKey(Size, on_delete=models.CASCADE,blank=True,null=True)
+    image_id = models.IntegerField(blank=True,null=True,default=0)
+    quantity = models.IntegerField(default=1)
+    price = models.DecimalField(max_digits=12, decimal_places=2,default=0)
+
+    def __str__(self):
+        return self.title
+
+#     def image(self):
+#         img = Images.objects.get(id=self.image_id)
+#         if img.id is not None:
+#              varimage=img.image.url
+#         else:
+#             varimage=""
+#         return varimage
+#
+#     def image_tag(self):
+#         img = Images.objects.get(id=self.image_id)
+#         if img.id is not None:
+#              return mark_safe('<img src="{}" height="50"/>'.format(img.image.url))
+#         else:
+#             return ""
+#
+# # llist= Language.objects.all()
+# # list1=[]
+# # for rs in llist:
+# #     list1.append((rs.code,rs.name))
+# # langlist= (list1)
+#
+#

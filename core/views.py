@@ -84,14 +84,13 @@ def search(request):
             query = form.cleaned_data['query']  # get form input data
             catid = form.cleaned_data['catid']
             if catid == 0:
-                products = Product.objects.filter(
-                    title__icontains=query)  # SELECT * FROM product WHERE title LIKE '%query%'
+                products = Product.objects.filter(title__icontains=query)  # SELECT * FROM product WHERE title LIKE '%query%'
             else:
                 products = Product.objects.filter(title__icontains=query, category_id=catid)
 
             category = Category.objects.all()
             context = {'products': products, 'query': query,
-                       'category': category}
+                       'category': category,}
             return render(request, 'search_products.html', context)
 
     return HttpResponseRedirect('/')
@@ -103,9 +102,9 @@ def search_auto(request):
         products = Product.objects.filter(title__icontains=q)
 
         results = []
-        for rs in products:
+        for i in products:
             product_json = {}
-            product_json = rs.title + " > " + rs.category.title
+            product_json = i.title + " > " + i.category.title
             results.append(product_json)
         data = json.dumps(results)
     else:
