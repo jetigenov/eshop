@@ -4,9 +4,11 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+import core
 from core import views
-from order import views as OrderViews
 
+from order import views as OrderViews
+from user import views as UserViews
 
 urlpatterns = [
 
@@ -29,6 +31,10 @@ urlpatterns = [
     path('product/<int:id>/<slug:slug>', views.product_detail, name='product_detail'),
 
     path('shopcart/', OrderViews.shopcart, name='shopcart'),
+
+    path('login/', UserViews.login_form, name='login_form'),
+    path('logout/', UserViews.logout_func, name='logout_func'),
+    path('signup/', UserViews.signup_form, name='signup_form'),
 
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
