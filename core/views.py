@@ -9,11 +9,19 @@ from django.http import HttpResponse, HttpResponseRedirect
 
 from core.forms import SearchForm
 from core.models import Setting, ContactForm, ContactMessage
+from order.models import ShopCart
 from product.models import Category, Product, Images, Comment
 
 
 def index(request):
     category = Category.objects.all()
+
+    current_user = request.user  # Access User Session information
+    shopcart = ShopCart.objects.filter(user_id=current_user.id)
+    total = 0
+    for i in shopcart:
+        total += i.product.price * i.quantity
+
     products_slider = Product.objects.all().order_by('id')[:4]
     products_latest = Product.objects.all().order_by('-id')[:4]
     products_picked = Product.objects.all().order_by('?')[:4]
@@ -27,7 +35,7 @@ def index(request):
         'products_latest': products_latest,
         'products_picked': products_picked,
         'category': category,
-
+        'total': total,
     }
     return render(request, 'index.html', context)
 
