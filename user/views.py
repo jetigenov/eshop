@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 
 from product.models import Category
+from user.forms import SignUpForm
 from user.models import UserProfile
 
 
@@ -12,6 +13,7 @@ def index(request):
 
 
 def login_form(request):
+
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -35,10 +37,32 @@ def login_form(request):
 
 
 def signup_form(request):
+
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            # Create data in profile table for user
+            current_user = request.user
+            data = UserProfile()
+            data.user_id = current_user.id
+            data.image = "images/users/user.png"
+            data.save()
+            messages.success(request, 'Your account has been created!')
+            return HttpResponseRedirect('/')
+        else:
+            messages.warning(request, form.errors)
+            return HttpResponseRedirect('/signup')
+
+    form = SignUpForm()
     category = Category.objects.all()
-    context = {
-        'category': category
-    }
+    context = {'form': form,
+               'category': category,
+               }
     return render(request, 'signup_form.html', context)
 
 

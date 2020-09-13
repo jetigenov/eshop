@@ -1,5 +1,5 @@
 {% extends 'home.html' %}
-{% block title %}User Login - {{ setting.title }}{% endblock %}
+{% block title %}User Login{{ setting.title }}{% endblock %}
 {% block description %}{{ setting.title }}{% endblock %}
 {% block keywords %}{{ setting.title }}{% endblock %}
 
@@ -45,6 +45,10 @@
                         <input class="input" type="password" name="password" placeholder="Password">
                     </div>
                     <input type="submit" value="Login">
+                    <hr>
+                    <div class="mt-4">
+                        Don't have an account? <a href="{% url 'signup_form' %}" <button class="primary-btn">Sign Up</button></a>
+				    </div>
                 </form>
             </div>
         </div>

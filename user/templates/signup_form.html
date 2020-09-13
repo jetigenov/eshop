@@ -1,0 +1,61 @@
+{% extends 'home.html' %}
+{% block title %}User Signup{{ setting.title }}{% endblock %}
+{% block description %}{{ setting.title }}{% endblock %}
+{% block keywords %}{{ setting.title }}{% endblock %}
+
+{% block sidebar %} {% include 'sidebar.html' %} {% endblock %}
+{% block body %}
+
+    <!-- BREADCRUMB -->
+    <div id="breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="/">Home</a></li>
+                <li class="active">User Sign Up</li>
+            </ul>
+        </div>
+    </div>
+    <!-- /BREADCRUMB -->
+
+    <!-- section -->
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="billing-details">
+
+                        <div class="section-title">
+                            <h3 class="title">Sign Up Form</h3>
+                        </div>
+
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }}" role="alert">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+
+                        <form method="post">
+                            {% csrf_token %}
+                            {{ form.as_p}}
+                            <button type="submit">Sign up</button>
+                            <hr>
+                            <div class="mt-4">
+                        Already have an account? <a href="{% url 'login_form' %}" <button class="primary-btn">Login</button></a>
+				    </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /section -->
+
+{% endblock %}
+
