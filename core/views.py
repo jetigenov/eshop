@@ -43,8 +43,16 @@ def index(request):
 def aboutus(request):
     category = Category.objects.all()
     setting = Setting.objects.get(pk=1)
+    current_user = request.user  # Access User Session information
+    shopcart = ShopCart.objects.filter(user_id=current_user.id)
+    total = 0
+    for i in shopcart:
+        total += i.product.price * i.quantity
+
     context = {'setting': setting,
                'category': category,
+               'total': total,
+
                }
     return render(request, 'about.html', context)
 
@@ -67,10 +75,19 @@ def contactus(request):
     category = Category.objects.all()
     setting = Setting.objects.get(pk=1)
     form = ContactForm
+    current_user = request.user  # Access User Session information
+    shopcart = ShopCart.objects.filter(user_id=current_user.id)
+
+    total = 0
+    for i in shopcart:
+        total += i.product.price * i.quantity
+
     context = {
         'setting': setting,
         'form': form,
         'category': category,
+        'total': total,
+
     }
     return render(request, 'contact.html', context)
 
@@ -79,10 +96,20 @@ def category_products(request, id, slug):
     category = Category.objects.all()
     categories = Category.objects.get(pk=id)
     products = Product.objects.filter(category_id=id)
+
+    current_user = request.user  # Access User Session information
+    shopcart = ShopCart.objects.filter(user_id=current_user.id)
+
+    total = 0
+    for i in shopcart:
+        total += i.product.price * i.quantity
+
     context = {
         'products': products,
         'category': category,
         'categories': categories,
+        'total': total,
+
     }
     return render(request, 'category_products.html', context)
 
@@ -127,10 +154,20 @@ def product_detail(request, id, slug):
     product = Product.objects.get(pk=id)
     images = Images.objects.filter(product_id=id)
     comments = Comment.objects.filter(product_id=id, status='True')
+
+    current_user = request.user  # Access User Session information
+    shopcart = ShopCart.objects.filter(user_id=current_user.id)
+
+    total = 0
+    for i in shopcart:
+        total += i.product.price * i.quantity
+
     context = {
         'product': product,
         'category': category,
         'images': images,
         'comments': comments,
+        'total': total,
+
     }
     return render(request, 'product_detail.html', context)
