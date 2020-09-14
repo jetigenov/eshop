@@ -47,7 +47,7 @@ class ProductImageInline(admin.TabularInline):
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['title', 'category', 'status', 'image_tag']
+    list_display = ['title', 'category', 'status', 'amount', 'image_tag']
     list_filter = ['category']
     readonly_fields = ['image_tag']
     inlines = [ProductImageInline]
