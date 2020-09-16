@@ -14,7 +14,7 @@ class SignUpForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('username', 'email','first_name','last_name', 'password1', 'password2')
+        fields = ('username', 'email', 'first_name', 'last_name', 'password1', 'password2')
 
 
 class UserUpdateForm(UserChangeForm):
@@ -28,6 +28,8 @@ class UserUpdateForm(UserChangeForm):
             'last_name': TextInput(attrs={'class': 'input', 'placeholder': 'last_name'}),
         }
 
+    def clean_password(self):
+        return ""
 
 CITY = [
         ('Bishkek', 'Bishkek'),
@@ -43,6 +45,6 @@ class ProfileUpdateForm(forms.ModelForm):
             'phone': TextInput(attrs={'class': 'input', 'placeholder': 'phone'}),
             'address': TextInput(attrs={'class': 'input', 'placeholder': 'address'}),
             'city': Select(attrs={'class': 'input', 'placeholder': 'city'}, choices=CITY),
-            'country': TextInput(attrs={'class': 'input', 'placeholder': 'country' }),
+            'country': TextInput(attrs={'class': 'input', 'placeholder': 'country', }),
             'image': FileInput(attrs={'class': 'input', 'placeholder': 'image', }),
         }
