@@ -27,7 +27,7 @@
     <div class="row">
     <Form action="" method="post">
                     {% csrf_token %}
-                    <div class="col-md-6">
+                    <div class="col-md-pull-6">
                         <div class="billing-details">
 
                             <div class="section-title">
@@ -54,25 +54,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-md-6">
-                        <div class="shiping-methods">
-                            <div class="section-title">
-                                <h4 class="title">Payment Information</h4>
-                            </div>
-                            <p><label for="id_first_name">Total: {{ total }} сом </label>
-                                <input type="text" name="total" class="input" readonly value="{{ total}} сом"></p>
-                            <p><label for="id_first_name">Credit Card Holder</label>
-                                <input type="text" name="holder" class="input"  value=""></p>
-                            <p><label for="id_first_name">Credit Card Number</label>
-                                <input type="text" name="number" class="input"  value=""></p>
-                            <p><label for="id_first_name">Credit Exp Date/Year</label>
-                                <input type="text" name="ecpdate" class="input"  placeholder="mm/yy"></p>
-                            <p><label for="id_first_name">Security Number</label>
-                                <input type="text" name="secnumber" class="input"  value=""></p>
-                        </div>
-                    </div>
-
                 </Form>
         <div class="col-md-12">
             <div class="order-summary clearfix">
