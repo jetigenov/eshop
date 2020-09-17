@@ -1,0 +1,83 @@
+{% extends 'home.html' %}
+
+{% block title %} {{user.first_name}} Favorites List {% endblock %}
+{% block description %} {{ setting.description }} {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+
+{% block sidebar %} {% include 'sidebar.html' %} {% endblock %}
+
+{% block body %}
+
+    <!-- BREADCRUMB -->
+    <div id="breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="/">Home</a></li>
+                <li class="active">Favorites List</li>
+            </ul>
+        </div>
+    </div>
+    <!-- /BREADCRUMB -->
+    <!-- section -->
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-3">
+                    {% include "user_panel.html" %}
+                </div>
+
+                <div class="col-md-9">
+                    <div class="order-summary clearfix">
+                        <div class="section-title">
+                            <h3 class="title">Favorites List</h3>
+                        </div>
+                        <table class="shopping-cart-table table">
+                            <tr>
+                                <th class="text-left">Product </th>
+                                <th class="text-left">Image</th>
+                                <th class="text-left">Date </th>
+                                <th class="text-left">Detail </th>
+                            </tr>
+                            {% for i in orders %}
+                                <tr>
+                                    <td class="text-left">{{ product.id}} </td>
+                                    <td class="text-left">{{ i.image.url}} </td>
+                                    <td class="text-left">{{ i.created}} </td>
+                                    <td class="text-left"><a class="primary-btn" href="/user/orderdetail/{{ i.id }}"> Detail </a></td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /section -->
+ <script>
+$.ajax({
+    url : "{% url 'favorites'%}",
+    data: {
+        'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val(),
+        'ProjectProfileID': 'here you get the id',
+        'isFavorite':true //or false
+    },
+    type : 'POST',
+    dataType : 'json',
+    success : function(json) {
+        if(json.success === true){
+            // do somthing
+        }else{
+            // do somthing
+        }
+    }
+});
+</script>
+{% endblock %}

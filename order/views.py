@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotAllowed
 from django.utils.crypto import get_random_string
 
 from order.models import ShopCart, ShopCartForm, OrderForm, Order, OrderProduct
@@ -139,3 +139,19 @@ def orderproduct(request):
         'form': form,
     }
     return render(request, 'Order_Form.html', context)
+
+
+
+def favorites(request):
+    category = Category.objects.all()
+    current_user = request.user  # Access User Session information
+    shopcart = ShopCart.objects.filter(user_id=current_user.id)
+    profile = UserProfile.objects.get(user_id=current_user.id)
+
+    context = {
+        'category': category,
+        'shopcart': shopcart,
+        'profile': profile,
+    }
+    return render(request, 'user_favorites.html', context)
+
