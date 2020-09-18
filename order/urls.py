@@ -4,8 +4,6 @@ from . import views
 urlpatterns = [
     path('', views.order, name='order'),
     path('addtoshopcart/<int:id>', views.addtoshopcart, name='addtoshopcart'),
-    # path('addtofavorites/<int:id>', views.addtofavorites, name='addtofavorites'),
     path('deletefromcart/<int:id>', views.deletefromcart, name='deletefromcart'),
-    # path('deletefromfavoritecart/<int:id>', views.deletefromfavoritecart, name='deletefromfavoritecart'),
     path('orderproduct/', views.orderproduct, name='orderproduct'),
 ]

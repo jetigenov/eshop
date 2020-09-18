@@ -98,12 +98,15 @@
                                         Cart
                                     </button>
                                 </form>
-                                <div class="pull-right">
-                                    <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
-                                    <button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
-                                    <button class="main-btn icon-btn"><i class="fa fa-share-alt"></i></button>
-                                </div>
                             </div>
+                            <div class="product-btns">
+                                <form action="/favorites/addtofavoritecart/{{ product.id }}" method="POST">
+                                    {% csrf_token %}
+                                    <span class="text-uppercase">Favorite: </span>
+                                    <button type="submit" class="primary-btn add-to-cart"><i class="fa fa-heart"></i></button>
+                                </form>
+                            </div>
+
                         </div>
                     </div>
                     <div class="col-md-12">
