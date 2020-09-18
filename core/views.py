@@ -28,6 +28,7 @@ def index(request):
 
     setting = Setting.objects.get(pk=1)
     page = "home"
+
     context = {
         'setting': setting,
         'page': page,
@@ -36,6 +37,7 @@ def index(request):
         'products_picked': products_picked,
         'category': category,
         'total': total,
+
     }
     return render(request, 'index.html', context)
 

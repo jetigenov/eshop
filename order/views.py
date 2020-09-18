@@ -5,12 +5,9 @@ from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotAllow
 from django.utils.crypto import get_random_string
 
 from order.models import ShopCart, ShopCartForm, OrderForm, Order, OrderProduct
-from product.models import Product, Category
+from product.models import Category, Product
 from user.models import UserProfile
 
-
-def order(request):
-    return HttpResponse("order list")
 
 
 @login_required(login_url='/login')  # Check login
@@ -55,6 +52,8 @@ def addtoshopcart(request, id):
         return HttpResponseRedirect(url)
 
 
+
+
 def shopcart(request):
     category = Category.objects.all()
     current_user = request.user  # Access User Session information
@@ -70,11 +69,13 @@ def shopcart(request):
     return render(request, 'shopcart_products.html', context)
 
 
+
 @login_required(login_url='/login')  # Check login
 def deletefromcart(request, id):
     ShopCart.objects.filter(id=id).delete()
     messages.success(request, "Your item deleted from Shopcart.")
     return HttpResponseRedirect("/shopcart/")
+
 
 
 def orderproduct(request):
@@ -141,17 +142,5 @@ def orderproduct(request):
     return render(request, 'Order_Form.html', context)
 
 
-
-def favorites(request):
-    category = Category.objects.all()
-    current_user = request.user  # Access User Session information
-    shopcart = ShopCart.objects.filter(user_id=current_user.id)
-    profile = UserProfile.objects.get(user_id=current_user.id)
-
-    context = {
-        'category': category,
-        'shopcart': shopcart,
-        'profile': profile,
-    }
-    return render(request, 'user_favorites.html', context)
-
+def order(request):
+    return HttpResponse("order")

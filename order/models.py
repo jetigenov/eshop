@@ -29,6 +29,7 @@ class ShopCartForm(ModelForm):
         fields = ['quantity']
 
 
+
 class Order(models.Model):
     STATUS = (
         ('New', 'New'),

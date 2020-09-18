@@ -1,0 +1,66 @@
+{% extends 'home.html' %}
+
+{% block title %} Favorites Products {% endblock %}
+{% block description %} {{ setting.description }} {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+
+{% block sidebar %} {% include 'sidebar.html' %} {% endblock %}
+
+{% block body %}
+
+    <!-- BREADCRUMB -->
+    <div id="breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="/">Home</a></li>
+                <li class="active">Favorites Products</li>
+            </ul>
+        </div>
+    </div>
+    <!-- /BREADCRUMB -->
+    <!-- section -->
+    <div class="section">
+    <!-- container -->
+    <div class="container">
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="order-summary clearfix">
+                <div class="section-title">
+                    <h3 class="title">Favorites Products List</h3>
+                </div>
+                <table class="shopping-cart-table table">
+                    <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th></th>
+                        <th class="text-center">Price</th>
+                        <th class="text-center">Image</th>
+                        <th class="text-right"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for i in favorite_products %}
+                        <tr>
+                            <td class="thumb"><img src="{{ i.product.image.url }}" alt="" style="height: 45px"></td>
+                            <td class="details"><a
+                                    href="/product/>{{ i.product.id }}/{{ i.product.slug }}">{{ i.product }}</a></td>
+                            <td class="price text-center"><strong>{{ i.product.price }} сом</strong><br></td>
+                            <td class="text-right"><a href="/order/deletefromcart/{{ i.id }}"
+                                                      onclick="return confirm('You want to delete it?')"
+                                                      class="main-btn icon-btn"><i class="fa fa-close"></i></a></td>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <!-- /section -->
+
+{% endblock %}

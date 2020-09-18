@@ -20,6 +20,7 @@ urlpatterns = [
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('order/', include('order.urls')),
     path('user/', include('user.urls')),
+    path('favorites/', include('favorites.urls')),
 
     path('about/', views.aboutus, name='aboutus'),
     path('contact/', views.contactus, name='contactus'),
@@ -32,11 +33,11 @@ urlpatterns = [
 
     path('shopcart/', OrderViews.shopcart, name='shopcart'),
 
+
     path('login/', UserViews.login_form, name='login_form'),
     path('logout/', UserViews.logout_func, name='logout_func'),
     path('signup/', UserViews.signup_form, name='signup_form'),
     path('orders/', UserViews.user_orders, name='user_orders'),
-    path('favorites/', OrderViews.favorites, name='favorites'),
 
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
