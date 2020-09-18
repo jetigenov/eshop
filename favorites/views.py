@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 
 from favorites.models import FavoriteCart, FavoriteCartForm
+from order.models import ShopCart
 from product.models import Category
 
 
@@ -54,10 +55,18 @@ def favoritecart(request):
     category = Category.objects.all()
     current_user = request.user
     favoritecart = FavoriteCart.objects.filter(user_id=current_user.id)
+    shopcart = ShopCart.objects.filter(user_id=current_user.id)
+
+    total = 0
+    for i in shopcart:
+        total += i.product.price * i.quantity
 
     context = {
         'favoritecart': favoritecart,
         'category': category,
+        'shopcart': shopcart,
+        'total': total,
+
     }
     return render(request, 'favorites_products.html', context )
 

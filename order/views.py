@@ -58,9 +58,11 @@ def shopcart(request):
     category = Category.objects.all()
     current_user = request.user  # Access User Session information
     shopcart = ShopCart.objects.filter(user_id=current_user.id)
+
     total = 0
     for i in shopcart:
         total += i.product.price * i.quantity
+
     context = {
         'category': category,
         'shopcart': shopcart,

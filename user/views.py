@@ -5,7 +5,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 
-from order.models import Order
+from order.models import Order, ShopCart
 from product.models import Category
 from user.forms import SignUpForm, UserUpdateForm, ProfileUpdateForm
 from user.models import UserProfile
@@ -17,9 +17,18 @@ def index(request):
     category = Category.objects.all()
     current_user = request.user
     profile = UserProfile.objects.get(user_id=current_user.id)
+    shopcart = ShopCart.objects.filter(user_id=current_user.id)
+
+    total = 0
+    for i in shopcart:
+        total += i.product.price * i.quantity
+
     context = {
         'category': category,
         'profile': profile,
+        'shopcart': shopcart,
+        'total': total,
+
     }
     return render(request, 'user_profile.html', context)
 
@@ -96,10 +105,20 @@ def user_update(request):
         category = Category.objects.all()
         user_form = UserUpdateForm(instance=request.user)
         profile_form = ProfileUpdateForm(instance=request.user.userprofile) #"userprofile" model -> OneToOneField relatinon with user
+        current_user = request.user
+        shopcart = ShopCart.objects.filter(user_id=current_user.id)
+
+        total = 0
+        for i in shopcart:
+            total += i.product.price * i.quantity
+
         context = {
             'category': category,
             'user_form': user_form,
-            'profile_form': profile_form
+            'profile_form': profile_form,
+            'shopcart': shopcart,
+            'total': total,
+
         }
         return render(request, 'user_update.html', context)
 
@@ -119,7 +138,14 @@ def user_password(request):
     else:
         category = Category.objects.all()
         form = PasswordChangeForm(request.user)
-        return render(request, 'user_password.html', {'form': form, 'category': category})
+        current_user = request.user
+        shopcart = ShopCart.objects.filter(user_id=current_user.id)
+
+        total = 0
+        for i in shopcart:
+            total += i.product.price * i.quantity
+
+        return render(request, 'user_password.html', {'form': form, 'category': category, 'shopcart': shopcart, 'total': total})
 
 
 
@@ -128,7 +154,15 @@ def user_orders(request):
     category = Category.objects.all()
     current_user = request.user
     orders = Order.objects.filter(user_id=current_user.id)
+    shopcart = ShopCart.objects.filter(user_id=current_user.id)
+
+    total = 0
+    for i in shopcart:
+        total += i.product.price * i.quantity
+
     context = {'category': category,
                'orders': orders,
+               'shopcart': shopcart,
+               'total': total,
                }
     return render(request, 'user_orders.html', context)
