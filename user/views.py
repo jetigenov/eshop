@@ -166,7 +166,3 @@ def user_orders(request):
                'total': total,
                }
     return render(request, 'user_orders.html', context)
-
-
-def reset_password():
-    return HttpResponse("Reset password")

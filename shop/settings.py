@@ -15,6 +15,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -26,9 +27,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'allauth',
-    # 'allauth.account',
+    'allauth.account',
     # 'allauth.socialaccount',
-    # 'crispy_forms',
+    'crispy_forms',
     # 'django_countries',
     'core',
     'product',

@@ -3,9 +3,17 @@ from __future__ import unicode_literals
 
 import json
 
+from allauth.account.forms import default_token_generator
 from django.contrib import messages
-from django.shortcuts import render
+from django.contrib.auth.forms import PasswordResetForm
+from django.contrib.auth.models import User
+from django.core.mail import send_mail, BadHeaderError
+from django.db.models import Q
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
+from django.template.loader import render_to_string
+from django.utils.encoding import force_bytes
+from django.utils.http import urlsafe_base64_encode
 
 from core.forms import SearchForm
 from core.models import Setting, ContactForm, ContactMessage
