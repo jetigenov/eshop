@@ -5,7 +5,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 
-from order.models import Order, ShopCart
+from order.models import Order, ShopCart, OrderProduct
 from product.models import Category
 from user.forms import SignUpForm, UserUpdateForm, ProfileUpdateForm
 from user.models import UserProfile
@@ -166,3 +166,7 @@ def user_orders(request):
                'total': total,
                }
     return render(request, 'user_orders.html', context)
+
+
+def reset_password():
+    return HttpResponse("Reset password")

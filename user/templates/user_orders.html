@@ -41,7 +41,6 @@
                                 <th class="text-left">Total </th>
                                 <th class="text-left">Status </th>
                                 <th class="text-left">Date </th>
-                                <th class="text-left">Detail </th>
                             </tr>
                             {% for i in orders %}
                                 <tr>
@@ -51,7 +50,6 @@
                                     <td class="text-left">{{ i.total}} </td>
                                     <td class="text-left">{{ i.status}} </td>
                                     <td class="text-left">{{ i.created}} </td>
-                                    <td class="text-left"><a class="primary-btn" href="/user/orderdetail/{{ i.id }}"> Detail </a></td>
                                 </tr>
                             {% endfor %}
                         </table>

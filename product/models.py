@@ -78,7 +78,6 @@ class Product(models.Model):
         return reverse('category_detail', kwargs={'slug': self.slug})
 
 
-
 class Images(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     title = models.CharField(max_length=50, blank=True)
@@ -142,25 +141,4 @@ class Variants(models.Model):
     def __str__(self):
         return self.title
 
-#     def image(self):
-#         img = Images.objects.get(id=self.image_id)
-#         if img.id is not None:
-#              varimage=img.image.url
-#         else:
-#             varimage=""
-#         return varimage
-#
-#     def image_tag(self):
-#         img = Images.objects.get(id=self.image_id)
-#         if img.id is not None:
-#              return mark_safe('<img src="{}" height="50"/>'.format(img.image.url))
-#         else:
-#             return ""
-#
-# # llist= Language.objects.all()
-# # list1=[]
-# # for rs in llist:
-# #     list1.append((rs.code,rs.name))
-# # langlist= (list1)
-#
-#
+

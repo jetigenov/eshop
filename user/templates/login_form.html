@@ -44,13 +44,14 @@
                     <div class="form-group">
                         <input class="input" type="password" name="password" placeholder="Password">
                     </div>
-                    <input type="submit" value="Login">
+                    <input type="submit" value="Login" style="margin:10px;" class="mt-4"><a href="{% url 'reset_password' %}">Reset Password</a>
                     <hr>
-                    <div class="mt-4">
-                        Don't have an account? <a href="{% url 'signup_form' %}" <button class="primary-btn">Sign Up</button></a>
-				    </div>
+                <div class="mt-4">
+                  Don't have an account? <a href="{% url 'signup_form' %}"<button class="primary-btn">Sign Up</button></a>
+                </div>
                 </form>
             </div>
+
         </div>
         <!-- /row -->
     </div>

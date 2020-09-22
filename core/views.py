@@ -157,8 +157,11 @@ def product_detail(request, id, slug):
     images = Images.objects.filter(product_id=id)
     comments = Comment.objects.filter(product_id=id, status='True')
 
-    current_user = request.user  # Access User Session information
+    current_user = request.user
     shopcart = ShopCart.objects.filter(user_id=current_user.id)
+
+    products_picked = Product.objects.filter(category__product=product)[:4]
+
 
     total = 0
     for i in shopcart:
@@ -170,6 +173,7 @@ def product_detail(request, id, slug):
         'images': images,
         'comments': comments,
         'total': total,
+        'products_picked': products_picked,
 
     }
     return render(request, 'product_detail.html', context)
