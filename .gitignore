@@ -9,4 +9,4 @@ media
 /staticfiles
 .DS_Store
 /images
-*.rdb
+.rdb
