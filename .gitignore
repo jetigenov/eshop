@@ -10,3 +10,5 @@ media
 .DS_Store
 /images
 .rdb
+/dump.rdb
+dump.rdb
