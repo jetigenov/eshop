@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Product Cart</title>
+    <link rel="stylesheet" type="text/css" href="{% static '' %}css/3d.css">
+</head>
+<body>
+<div class="container">
+    <div class="box">
+        <h2 class="name">Iphone 12 Pro</h2>
+        <a href="#" class="buy">Buy Now</a>
+        <div class="circle"></div>
+        <img src="{% static '' %}images/iphone.png" class="product">
+    </div>
+    <div class="box">
+        <h2 class="name">Nike Mike</h2>
+        <a href="#" class="buy">Buy Now</a>
+        <div class="circle"></div>
+        <img src="{% static '' %}images/nike.png" class="product">
+    </div>
+    <div class="box">
+        <h2 class="name">NVIDIA 3080</h2>
+        <a href="#" class="buy">Buy Now</a>
+        <div class="circle"></div>
+        <img src="{% static '' %}images/nvidia.png" class="product">
+    </div>
+</div>
+<script type="text/javascript" src="{% static 'js/vanilla-tilt.min.js' %}"></script>
+<script type="text/javascript">
+	VanillaTilt.init(document.querySelectorAll(".box"), {
+		max: 25,
+		speed: 400
+	});
+</script>
+</body>
+</html>

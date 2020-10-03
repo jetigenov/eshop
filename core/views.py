@@ -185,3 +185,10 @@ def product_detail(request, id, slug):
 
     }
     return render(request, 'product_detail.html', context)
+
+
+def newlogin(request):
+    return render(request, 'newlogin.html')
+
+def collection(request):
+    return render(request, 'collections.html')

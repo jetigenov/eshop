@@ -19,6 +19,7 @@ urlpatterns = [
 
     path('', include('core.urls')),
     path('home/', include('core.urls')),
+
     path('product/', include('product.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('order/', include('order.urls')),
@@ -27,6 +28,8 @@ urlpatterns = [
 
     path('about/', views.aboutus, name='aboutus'),
     path('contact/', views.contactus, name='contactus'),
+    path('newlogin/', views.newlogin, name='newlogin'),
+    path('collection/', views.collection, name='collection'),
 
     path('search/', views.search, name='search'),
     path('search_auto/', views.search_auto, name='search_auto'),
